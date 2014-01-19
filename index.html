@@ -197,18 +197,19 @@
             <div class="col-lg-10 col-lg-push-1">
                 <p><code>examples/maven</code> is a simple Maven project which uses TestPackage. The following elements are core prerequisites for using TestPackage:</p>
 
-                <p><strong>TestPackage library dependency</strong></p>
+                <p><strong>1. TestPackage library dependency</strong></p>
 
                 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.testpackage&lt;/groupId&gt;
     &lt;artifactId&gt;testpackage&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 
-                <p><strong>Maven Shade plugin to compile test sources, dependencies and TestPackage into a single executable JAR</strong></p>
+                <p><strong>2. Maven Shade plugin to compile test sources, dependencies and TestPackage into a single executable JAR</strong></p>
 
                 <p><em>Note that <strong>TestPackage-Package</strong> must be set to the package where test classes reside. Other configuration remains as-is.</em></p>
 
-                <pre><code>&lt;plugin&gt;
+                <button class="showcode btn btn-sm visible-xs">Show code</button>
+                <pre class="hidden-xs"><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
     &lt;executions&gt;
@@ -236,9 +237,10 @@
     &lt;/executions&gt;
 &lt;/plugin&gt;</code></pre>
 
-                <p><strong>Configuration of integration test source location (not needed if you don't mind keeping integration test sources under src/main/java)</strong></p>
+                <p><strong>3. Configuration of integration test source location (not needed if you don't mind keeping integration test sources under src/main/java)</strong></p>
 
-                <pre><code>&lt;plugin&gt;
+                <button class="showcode btn btn-sm visible-xs">Show code</button>
+                <pre class="hidden-xs"><code>&lt;plugin&gt;
     &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
     &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
     &lt;executions&gt;
@@ -349,6 +351,9 @@
             setTimeout(appear, 800);
         };
         setTimeout(appear, 1000);
+    });
+    $('.showcode').click(function() {
+        $(this).next().toggleClass('hidden-xs');
     });
 
 </script>

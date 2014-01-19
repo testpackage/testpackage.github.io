@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TestPackage">
+    <meta name="author" content="Richard North">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>TestPackage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontello.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/fontello-ie7.css">
+    <![endif]-->
+
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/smoothscroll.js"></script>
+
+
+</head>
+
+<body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+<!-- Fixed navbar -->
+<div id="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><b>TestPackage</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#home" class="smothscroll">Home</a></li>
+                <li><a href="#features" class="smothscroll">Features</a></li>
+                <li><a href="#usage" class="smothScroll">Usage</a></li>
+                <li><a href="#get-it" class="smothScroll">Get it</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+
+<section id="home" name="home"></section>
+<div id="headerwrap">
+    <div class="container">
+        <div class="row centered">
+            <div class="col-lg-12">
+                <h1>TestPackage</h1>
+
+                <h3>Set your tests free</h3>
+                <br>
+            </div>
+
+            <div class="col-lg-10 col-lg-push-1">
+                <div class="code">
+                    <div class="step">$ java -jar AboutTestPackage.jar</div>
+                    <div class="green step">✔ Packages up tests to be executed anywhere, any time <span class="blue">(1 ms)</span>
+                    </div>
+                    <div class="green step">✔ Just command line; no dev tool dependencies <span
+                            class="blue">(1 ms)</span></div>
+                    <div class="green step">✔ Great for integration and smoke tests <span class="blue">(1 ms)</span>
+                    </div>
+                    <div class="green step">✔ Clear, easy to scan output <span class="blue">(1 ms)</span></div>
+                    <div class="green step">✔ Runs recently-failed tests first, with optional fail-fast support <span
+                            class="blue">(1 ms)</span></div>
+                    <div class="green step">✔ Compatible with regular JUnit tests and Jenkins <span
+                            class="blue">(1 ms)</span></div>
+                    <div class="step"><br/><br/>
+                        *** TESTS COMPLETE<br/>
+                        *** <span class="green-bg">6 passed</span>, 0 failed, 0 ignored
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ .container -->
+</div>
+<!--/ #headerwrap -->
+
+<section id="intro" name="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <p>TestPackage is a simple Java library designed to make it easy to bundle JUnit tests in standalone
+                    executable
+                    JAR form, rather than the traditional model of running them from an Ant/Maven/Gradle build
+                    script.</p>
+
+                <p>It is <i>not intended for running unit tests</i>, which clearly need to be built around the units of
+                    code under test (on the same classpath). However, for situations like integration tests, functional
+                    tests and smoke tests, inclusion in a build script adds unnecessary complexity and makes some
+                    opportunities harder to grasp.</p>
+
+                <p>Additionally, TestPackage aims to provide more useful and intuitive output than other JUnit runners
+                    give, for example making it easier to spot assertion errors and root causes of exceptions at a
+                    glance.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="features" name="features">
+    <div class="container">
+        <div class="row centered">
+            <h1>Features</h1>
+            <br>
+            <br>
+
+            <div class="col-lg-4">
+                <i class="icon-gift icon-large"></i>
+
+                <h3>Standalone test execution</h3>
+
+                <p>Supports running regular JUnit tests standalone from the command line.
+                    This is ideal for tests that don't belong as part of the build process, such as
+                    functional, infrastructure or smoke tests.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="icon-target icon-large"></i>
+
+                <h3>Test prioritisation</h3>
+
+                <p>Runs recently failed tests first, on the basis that these are most likely to identify
+                    persistent problems. This can be particularly powerful when used with fail-fast mode.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="icon-lightbulb icon-large"></i>
+
+                <h3>Clean, clear output</h3>
+
+                <p>TestPackage is designed to display test output cleanly and clearly, enabling developers
+                    and ops people to quickly get to the core of any issues.</p>
+            </div>
+        </div>
+        <br/>
+        <br/>
+
+        <div class="row centered">
+            <div class="col-lg-4">
+                <i class="icon-eye-outline icon-large"></i>
+
+                <h3>Visible steps</h3>
+
+                <p>Provides <code>VisibleAssertion</code> replacement for <code>org.junit.Assert</code>
+                    which makes it easier to identify causes of step errors.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="icon-thumbs-up icon-large"></i>
+
+                <h3>Fits in with existing tooling</h3>
+
+                <p>Executes standard JUnit tests and produces JUnit XML reports, ready for use with Continuous
+                    Integration tools.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="icon-loop-alt icon-large"></i>
+
+                <h3>Makes tests part of your deployment pipeline</h3>
+
+                <p>TestPackage helps you to version and pipeline your tests just like your deployable binaries -
+                    build-once-run-many, with no dev tool requirements in the environment you want to run your
+                    tests.</p>
+            </div>
+        </div>
+        <br>
+        <hr>
+    </div>
+    <!--/ .container -->
+</section>
+
+<section id="usage" name="usage">
+    <div class="container">
+        <div class="row centered">
+            <h1>Usage</h1>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-10 col-lg-push-1">
+                <p><code>examples/maven</code> is a simple Maven project which uses TestPackage. The following elements are core prerequisites for using TestPackage:</p>
+
+                <p><strong>TestPackage library dependency</strong></p>
+
+                <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.testpackage&lt;/groupId&gt;
+    &lt;artifactId&gt;testpackage&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+
+                <p><strong>Maven Shade plugin to compile test sources, dependencies and TestPackage into a single executable JAR</strong></p>
+
+                <p><em>Note that <strong>TestPackage-Package</strong> must be set to the package where test classes reside. Other configuration remains as-is.</em></p>
+
+                <pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;shade&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;transformers&gt;
+                    &lt;transformer
+                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+                        &lt;manifestEntries&gt;
+                            &lt;Main-Class&gt;
+                                org.testpackage.TestPackage
+                             &lt;/Main-Class&gt;
+                            &lt;TestPackage-Package&gt;
+                                org.testpackage.example.maven
+                            &lt;/TestPackage-Package&gt;
+                        &lt;/manifestEntries&gt;
+                    &lt;/transformer&gt;
+                &lt;/transformers&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
+
+                <p><strong>Configuration of integration test source location (not needed if you don't mind keeping integration test sources under src/main/java)</strong></p>
+
+                <pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;add-test-source&lt;/id&gt;
+            &lt;phase&gt;generate-sources&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;add-source&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;sources&gt;
+                    &lt;source&gt;${basedir}/src/int-test/java&lt;/source&gt;
+                &lt;/sources&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
+
+                <h3>
+                <a name="building-standalone-test-jar-with-maven" class="anchor" href="#building-standalone-test-jar-with-maven"><span class="octicon octicon-link"></span></a>Building standalone test JAR with Maven</h3>
+
+                <p>With the configuration outlined above, simply run <code>mvn clean package</code> to produce an executable JAR.</p>
+
+                <h3>
+                <a name="running-the-tests" class="anchor" href="#running-the-tests"><span class="octicon octicon-link"></span></a>Running the tests</h3>
+
+                <p>Once built, execute the build JAR file (e.g. named <code>maven-example-1.0-SNAPSHOT.jar</code>) by running:</p>
+
+                <pre><code>java -jar target/maven-example-1.0-SNAPSHOT.jar</code></pre>
+
+                <p>Of course, this JAR file can be moved anywhere on the filesystem, deployed to an artifact repository etc (e.g. with <code>mvn deploy</code>).</p>
+
+                <p>While the above runs with sensible defaults, the following arguments may be passed at the command line to customise behaviour:</p>
+
+                <h4>
+                <a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h4>
+
+                <pre><code>--failfast or -ff:      Enables fail-fast mode</code></pre>
+
+                <h4>
+                <a name="arguments" class="anchor" href="#arguments"><span class="octicon octicon-link"></span></a>Arguments</h4>
+
+                <p>The full package names which should be searched (non-recursively) for test classes</p>
+
+                <h4>
+                <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+                <pre><code>java -jar JARFILE [OPTIONS] [ARGUMENTS]</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="get-it" name="get-it"></section>
+<div id="footerwrap">
+    <div class="container">
+        <div class="col-lg-8 col-lg-push-1">
+            <p>Get it on GitHub:</p>
+            <h2><a href="https://github.com/testpackage/testpackage"><i class="icon-github"></i>github.com/&#8203;testpackage/&#8203;testpackage</a></h2>
+        </div>
+    </div>
+</div>
+<div id="c">
+    <div class="container">
+        <div class="col-lg-2 col-sm-2 hidden-xs">
+            <a href="http://twitter.com/whichrich"><img src="assets/img/rnorth@2x.png" width="77" alt="Richard North"/></a>
+        </div>
+        <div class="col-lg-4 col-xs-4 text-left">
+            Created by <a href="http://twitter.com/whichrich">Richard North</a>
+        </div>
+        <div class="col-lg-4 col-xs-4 col-sm-3 text-right">
+            Supported by
+        </div>
+        <div class="col-lg-2 col-xs-4 col-sm-3 text-left">
+            <a href="http://www.deloittedigital.co.uk"><img class="hidden-xs" src="http://www.deloittedigital.com/eu/assets/img/2x/common/logo-deloitte-digital-2x.png" width="102" alt="Deloitte Digital"/><span class="visible-xs">Deloitte Digital</span></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <br />
+            <p>Page template based on <a href="http://www.blacktie.co/2013/10/pratt-app-landing-page/">Pratt</a> created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/bootstrap.js"></script>
+<script>
+
+    $('.step').css('visibility', 'hidden');
+    $(document).ready(function() {
+
+        var appear = function () {
+            var i = 0;
+            $('.step').filter(function () {
+                return $(this).css('visibility') === 'hidden' && i++ === 0
+            }).css('visibility', 'visible');
+            setTimeout(appear, 800);
+        };
+        setTimeout(appear, 1000);
+    });
+
+</script>
+</body>
+</html>

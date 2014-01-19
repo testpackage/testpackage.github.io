@@ -138,7 +138,9 @@
                 <h3>Test prioritisation</h3>
 
                 <p>Runs recently failed tests first, on the basis that these are most likely to identify
-                    persistent problems. This can be particularly powerful when used with fail-fast mode.</p>
+                    persistent problems. This can be particularly powerful when used with fail-fast mode - checking
+                    whether you've fixed a failing test no longer involves waiting for dozens of other stable tests
+                    to be run first.</p>
             </div>
             <div class="col-lg-4">
                 <i class="icon-lightbulb icon-large"></i>
@@ -268,6 +270,12 @@
                 <pre><code>java -jar target/maven-example-1.0-SNAPSHOT.jar</code></pre>
 
                 <p>Of course, this JAR file can be moved anywhere on the filesystem, deployed to an artifact repository etc (e.g. with <code>mvn deploy</code>).</p>
+
+                <p>After tests have run, a directory named <code>.testpackage</code> will be created in the working directory. This directory contains
+                    some metadata used internally by TestPackage to prioritise recently-failed tests over tests that have never failed or not
+                    failed recently. <b>To get the most value out of the test prioritisation support, you should not remove this folder</b>.
+                    In fact, you should check this folder into version control or configure your CI system to retain it between test runs. Doing so
+                    will ensure that CI always runs recently-failed tests first.</p>
 
                 <p>While the above runs with sensible defaults, the following arguments may be passed at the command line to customise behaviour:</p>
 

@@ -187,8 +187,20 @@ and (min-width: 480px) {
     color: #3f3;
 }
 
+code .green {
+    color: #3c3;
+}
+
 .code .blue {
     color: #66f;
+}
+
+code .red {
+    color: #c33;
+}
+
+code .yellow {
+    color: #aa3;
 }
 
 .code .green-bg {

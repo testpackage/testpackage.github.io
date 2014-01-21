@@ -48,6 +48,7 @@
                 <li class="active"><a href="#home" class="smothscroll">Home</a></li>
                 <li><a href="#features" class="smothscroll">Features</a></li>
                 <li><a href="#usage" class="smothScroll">Usage</a></li>
+                <li><a href="#visible-assertions" class="smothScroll">Visible Assertions</a></li>
                 <li><a href="#get-it" class="smothScroll">Get it</a></li>
             </ul>
         </div>
@@ -160,7 +161,7 @@
 
                 <h3>Visible steps</h3>
 
-                <p>Provides <code>VisibleAssertion</code> replacement for <code>org.junit.Assert</code>
+                <p>Provides <a href="#visible-assertions"><code>VisibleAssertion</code></a> replacement for <code>org.junit.Assert</code>
                     which makes it easier to identify causes of step errors.</p>
             </div>
             <div class="col-lg-4">
@@ -292,9 +293,76 @@
                 <p>The full package names which should be searched (non-recursively) for test classes</p>
 
                 <h4>
-                <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h4>
+                <a class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h4>
 
                 <pre><code>java -jar JARFILE [OPTIONS] [ARGUMENTS]</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section name="visible-assertions" id="visible-assertions">
+    <div class="container">
+        <div class="row centered">
+            <h1>Visible Assertions</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <p>TestPackage includes <code>org.testpackage.VisibleAssertions</code>, which is a lightweight re-implementation of <code>org.junit.Assert</code>. Unlike <code>Assert</code>,
+                <code>VisibleAssertions</code> augments the assertion errors it raises with a running commentary on standard out. Some of the API of <code>VisibleAssertions</code> is summarised below.</p>
+                <p>Please note that TestPackage will generally suppress standard out unless a test fails, so you'd not normally expect to see this output on the command line for passing tests.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <h3>assertTrue(<i>String message, boolean value</i>)</h3>
+                <p>Aimed at simple boolean condition evaluation, although often <code>assertEquals</code> and <code>assertThat</code> will yield more informative output. For example:</p>
+                <pre><code>assertTrue("some boolean condition is as expected", myObject.isSomethingTrue());
+assertTrue("another boolean condition is as expected", myBadObject.isSomethingTrue());</code></pre>
+                <p>Yields:</p>
+                <pre><code><span class="green">&#10004; some boolean condition is as expected</span>
+<span class="red">&#10008; another boolean condition is as expected</span></code></pre>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <h3>assertEquals(<i>String message, Object expected, Object actual</i>)</h3>
+                <p>Tests two objects for equality, and describes the difference (as a toString()) if they are not equal. For example:</p>
+                <pre><code>assertEquals("some thing is as expected", myExpectedObject, theActualObjectWhichIsEquals);
+assertEquals("some other thing is as expected", "my expected String", "the actual String");</code></pre>
+                <p>Yields:</p>
+                <pre><code><span class="green">&#10004; some thing is as expected</span>
+<span class="red">&#10008; some other thing is as expected</span>
+<span class="yellow">        'the actual String' does not equal expected 'my expected String'</span></code></pre>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <h3>assertThat(<i>String whatTheObjectIs, T actual, Matcher&lt;? super T&gt; matcher</i>)</h3>
+                <p>Brings the power of <a href="https://github.com/hamcrest/JavaHamcrest">Hamcrest</a> matchers to bear, and additionally uses the matchers to help construct an informative commentary.
+                    Rather than describing a condition, the first parameter can just be a noun describing the
+                    object which is being tested. For example:</p>
+                <pre><code>assertThat("the thing", "a String", is(equalTo("a String")));
+assertThat("the thing", "my actual String", is(equalTo("the expected String")));</code></pre>
+                <p>Yields:</p>
+                <pre><code><span class="green">&#10004; the thing is "a String"</span>
+<span class="red">&#10008; assertion on the thing failed</span>
+<span class="yellow">        asserted that it is "the expected String" but was "my actual String"</span></code></pre>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-lg-push-1">
+                <h3>Other methods</h3>
+                <ul>
+                    <li>assertNull(<i>String message, Object o</i>)</li>
+                    <li>assertNotNull(<i>String message, Object o</i>)</li>
+                    <li>assertSame(<i>String message, Object expected, Object actual</i>)</li>
+                    <li>fail(<i>String message</i>)</li>
+                </ul>
             </div>
         </div>
     </div>

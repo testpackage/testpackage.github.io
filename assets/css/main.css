@@ -13,11 +13,10 @@ body {
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Raleway";
-    font-weight: 300;
+    font-family: "Lato";
+    font-weight: 400;
     color: #333;
 }
-
 
 /* Paragraph & Typographic */
 p {
@@ -77,6 +76,8 @@ a:after {
 }
 
 #headerwrap h1 {
+    font-family: "Bitter";
+    font-weight: 700;
 	margin-top: 30px;
 	color: white;
 	font-size: 40px;

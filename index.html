@@ -14,9 +14,9 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/fontello.css">
+    <link rel="stylesheet" href="assets/css/testpackage-icons.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="assets/css/fontello-ie7.css">
+    <link rel="stylesheet" href="assets/css/testpackage-icons-ie7.css">
     <![endif]-->
 
     <link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
@@ -77,9 +77,11 @@
                             class="blue">(1 ms)</span></div>
                     <div class="green step">&#10004; Compatible with regular JUnit tests and Jenkins <span
                             class="blue">(1 ms)</span></div>
+                    <div class="green step">&#10004; Test sharding for easy parallel running <span
+                            class="blue">(1 ms)</span></div>
                     <div class="step"><br/><br/>
                         *** TESTS COMPLETE<br/>
-                        *** <span class="green-bg">6 passed</span>, 0 failed, 0 ignored
+                        *** <span class="green-bg">7 passed</span>, 0 failed, 0 ignored
                     </div>
                 </div>
             </div>
@@ -177,6 +179,27 @@
                     tests.</p>
             </div>
         </div>
+
+        <div class="row centered">
+            <div class="col-lg-6">
+                <i class="icon-flow-parallel icon-large"></i>
+
+                <h3>Test sharding</h3>
+
+                <p>Allows tests to be divided across multiple executors for parallel running. Executors do not need
+                   to have any network connectivity to distribute tests, and configuration is simple.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <i class="icon-cog-outline icon-large"></i>
+
+                <h3>Externalised configuration</h3>
+
+                <p>Configurable properties (such as per-environment paths, URLs and other settings)
+                                    can easily be loaded in from a properties file at run time.</p>
+            </div>
+
+        </div>
         <br>
         <hr>
     </div>
@@ -200,34 +223,23 @@
     &lt;artifactId&gt;testpackage&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 
-                <p><strong>2. Maven Shade plugin to compile test sources, dependencies and TestPackage into a single executable JAR</strong></p>
+                <p><strong>2. Maven plugin to compile test sources, dependencies and TestPackage into a single executable JAR</strong></p>
 
-                <p><em>Note that <strong>TestPackage-Package</strong> must be set to the package where test classes reside. Other configuration remains as-is.</em></p>
+                <p><em>Note that <strong>package-name</strong> must be set to the package where test classes reside. <strong>flags</strong> may be set to configure JVM properties for the fat jar if invoked as a plain unix executable.</em></p>
 
                 <button class="showcode btn btn-sm visible-xs">Show code</button>
                 <pre class="hidden-xs"><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+    &lt;groupId&gt;org.testpackage&lt;/groupId&gt;
+    &lt;artifactId&gt;testpackage-maven-plugin&lt;/artifactId&gt;
     &lt;executions&gt;
         &lt;execution&gt;
             &lt;phase&gt;package&lt;/phase&gt;
             &lt;goals&gt;
-                &lt;goal&gt;shade&lt;/goal&gt;
+                &lt;goal&gt;fatjar&lt;/goal&gt;
             &lt;/goals&gt;
             &lt;configuration&gt;
-                &lt;transformers&gt;
-                    &lt;transformer
-                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
-                        &lt;manifestEntries&gt;
-                            &lt;Main-Class&gt;
-                                org.testpackage.TestPackage
-                             &lt;/Main-Class&gt;
-                            &lt;TestPackage-Package&gt;
-                                org.testpackage.example.maven
-                            &lt;/TestPackage-Package&gt;
-                        &lt;/manifestEntries&gt;
-                    &lt;/transformer&gt;
-                &lt;/transformers&gt;
+                &lt;package-name&gt;org.testpackage.example.maven&lt;/package-name&gt;
+                &lt;flags&gt;-Xmx2G&lt;/flags&gt;
             &lt;/configuration&gt;
         &lt;/execution&gt;
     &lt;/executions&gt;
@@ -280,7 +292,12 @@
                 <h4>
                 <a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h4>
 
-                <pre><code>--failfast or -ff:      Enables fail-fast mode</code></pre>
+                <pre><code>--failfast or -ff:                         Enables fail-fast mode
+--quiet or -q:                             Enables quiet mode (hides all test output)
+--verbose or -v:                           Enables verbose mode (shows all test output, including stdout/stderr)
+--shard=<i>n</i>:                                 The index of the current test shard (default: 0)
+--numShards=<i>n</i>:                             If sharding, set this to the number of shards (default: 1)
+--propertiesfile=<i>name</i> or -P <i>name</i>:          Load a properties file (either plain Java .properties or XML) and set system properties accordingly during test run.</code></pre>
 
                 <h4>
                 <a name="arguments" class="anchor" href="#arguments"><span class="octicon octicon-link"></span></a>Arguments</h4>

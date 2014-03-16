@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot?30262579');
-  src: url('../font/fontello.eot?30262579#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff?30262579') format('woff'),
-       url('../font/fontello.ttf?30262579') format('truetype'),
-       url('../font/fontello.svg?30262579#fontello') format('svg');
+  font-family: 'testpackage-icons';
+  src: url('../font/testpackage-icons.eot?23763414');
+  src: url('../font/testpackage-icons.eot?23763414#iefix') format('embedded-opentype'),
+       url('../font/testpackage-icons.woff?23763414') format('woff'),
+       url('../font/testpackage-icons.ttf?23763414') format('truetype'),
+       url('../font/testpackage-icons.svg?23763414#testpackage-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -13,14 +13,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?30262579#fontello') format('svg');
+    font-family: 'testpackage-icons';
+    src: url('../font/testpackage-icons.svg?23763414#testpackage-icons') format('svg');
   }
 }
 */
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "fontello";
+  font-family: "testpackage-icons";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -50,11 +50,12 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-eye-outline:before { content: '\e800'; } /* '' */
-.icon-thumbs-up:before { content: '\e801'; } /* '' */
-.icon-wrench-outline:before { content: '\e802'; } /* '' */
+.icon-eye-outline:before { content: '\e801'; } /* '' */
+.icon-thumbs-up:before { content: '\e805'; } /* '' */
+.icon-cog-outline:before { content: '\e808'; } /* '' */
+.icon-wrench-outline:before { content: '\e804'; } /* '' */
 .icon-lightbulb:before { content: '\e803'; } /* '' */
-.icon-loop-alt:before { content: '\e804'; } /* '' */
-.icon-target:before { content: '\e805'; } /* '' */
-.icon-gift:before { content: '\e806'; } /* '' */
-.icon-github:before { content: '\e807'; } /* '' */
+.icon-loop-alt:before { content: '\e806'; } /* '' */
+.icon-target:before { content: '\e802'; } /* '' */
+.icon-gift:before { content: '\e800'; } /* '' */
+.icon-flow-parallel:before { content: '\e807'; } /* '' */

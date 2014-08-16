@@ -1,0 +1,4 @@
+name: TestPackage
+markdown: redcarpet
+pygments: true
+exclude: ['vendor']

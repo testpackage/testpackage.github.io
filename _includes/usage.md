@@ -77,19 +77,89 @@ some metadata used internally by TestPackage to prioritise recently-failed tests
 
 While the above runs with sensible defaults, the following arguments may be passed at the command line to customise behaviour:
 
+## Usage
+
+If you have built a fat jar file which includes TestPackage as a dependency, it can be run as follows:
+
+    java -jar JARFILE [OPTIONS] [ARGUMENTS]
+
+If you have used the TestPackage maven plugin to build your test fat jar, it will be directly executable as well as being executable via `java -jar`:
+
+    java -jar JARFILE [OPTIONS] [ARGUMENTS]
+    or
+    JARFILE [OPTIONS] [ARGUMENTS]
+
 ### Options
 
-    --failfast or -ff:                         Enables fail-fast mode
-    --quiet or -q:                             Enables quiet mode (hides all test output)
-    --verbose or -v:                           Enables verbose mode (shows all test output, including stdout/stderr)
-    --shard=n:                                 The index of the current test shard (default: 0)
-    --numShards=n:                             If sharding, set this to the number of shards (default: 1)
-    --propertiesfile=name or -P name:          Load a properties file (either plain Java .properties or XML) and set system properties accordingly during test run.
+#### Fail fast
+
+`--failfast` or `-ff`: Abort testing when the first failure occurs (good for validation before pushing changes to the team repository)
+
+#### Quiet mode
+
+`--quiet` or `-q`: Enables quiet mode (hides all test output)
+
+#### Verbose mode
+
+`--verbose` or `-v`: Enables verbose mode (shows all test output, including stdout/stderr)
+
+#### Sharding
+
+`--shard=n`: Set the index of the current test shard (default: 0)
+`--numShards=n`: Set this to the total number of shards (default: 1)
+
+#### Loading environment variables from a file
+
+`--propertiesfile=name` or `-P name`: Load a properties file (either plain Java .properties or XML) and set system properties accordingly during test run.
+
+#### Coverage optimization
+
+##### Recording coverage data
+
+N.B. To record coverage data:
+
+ * `org.testpackage:coverage-jacoco` must be on the test package's classpath
+ * The JacoCo coverage agent must be injected into the system under test in TCP server mode (e.g. adding a Java agent option like `-javaagent:path/to/jacocoagent.jar=output=tcpserver`)
+
+See `examples/coverage` for an example.
+
+`--jacoco-host`: Specify which host is running the system under test (default: localhost)
+`--jacoco-port`: Specify which port to find the JaCoCo agent on (if running. default: 6300)
+
+##### Optimizing tests once coverage data has been collected
+
+`--optimize-coverage=n%`: Tell TestPackage to aim for n% test coverage. If attainable, it will try to select the quickest subset of tests that achieve this coverage.
+`--optimize-time=x`: Tell TestPackage to aim for x test execution time (e.g. 1m, 1min, 1h). It will try and select a subset of tests which achieve the best coverage without exceeding this execution time.
 
 ### Arguments
 
 The full package names which should be searched (non-recursively) for test classes
 
-### Usage
+### Usage examples
 
-    java -jar JARFILE [OPTIONS] [ARGUMENTS]
+Run all test classes found in `org.example.tests`:
+
+    target/functests.jar org.example.tests
+
+
+Run tests spread across three different test executors (note: afterwards, JUnit test report files output to `target` need to be merged separately):
+
+    target/functests.jar --shard=1 --numShards=3 org.example.tests          # On executor 1
+    target/functests.jar --shard=2 --numShards=3 org.example.tests          # On executor 2
+    target/functests.jar --shard=3 --numShards=3 org.example.tests          # On executor 3
+
+
+Record test coverage (e.g. with the app being tested running in Tomcat):
+
+    # Start Tomcat with a JaCoCo coverage recording agent
+    export CATALINA_OPTS="$CATALINA_OPTS -javaagent:path/to/jacocoagent.jar=output=tcpserver"
+    /path/to/tomcat/bin/startup.sh
+
+    # Run all tests
+    target/functests.jar org.example.tests
+
+
+Run an optimized subset of tests using previously captured coverage data. e.g. we might want to run a smoke test that takes
+no longer than 5 minutes, but achieves the best coverage possible in that time:
+
+    target/functests.jar --optimize-time=5min org.example.tests

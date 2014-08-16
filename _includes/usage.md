@@ -124,11 +124,13 @@ N.B. To record coverage data:
 See `examples/coverage` for an example.
 
 `--jacoco-host`: Specify which host is running the system under test (default: localhost)
+
 `--jacoco-port`: Specify which port to find the JaCoCo agent on (if running. default: 6300)
 
 ##### Optimizing tests once coverage data has been collected
 
 `--optimize-coverage=n%`: Tell TestPackage to aim for n% test coverage. If attainable, it will try to select the quickest subset of tests that achieve this coverage.
+
 `--optimize-time=x`: Tell TestPackage to aim for x test execution time (e.g. 1m, 1min, 1h). It will try and select a subset of tests which achieve the best coverage without exceeding this execution time.
 
 ### Arguments

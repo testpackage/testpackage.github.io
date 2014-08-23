@@ -106,6 +106,7 @@ If you have used the TestPackage maven plugin to build your test fat jar, it wil
 #### Sharding
 
 `--shard=n`: Set the index of the current test shard (default: 0)
+
 `--numShards=n`: Set this to the total number of shards (default: 1)
 
 #### Loading environment variables from a file

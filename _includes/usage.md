@@ -6,7 +6,7 @@
 
 {% highlight xml %}
 <dependency>
-    <groupId>org.testpackage</group>
+    <groupId>org.testpackage</groupId>
     <artifactId>testpackage</artifactId>
 </dependency>
 {% endhighlight %}
